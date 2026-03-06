@@ -1,7 +1,9 @@
 // ============================================================
 // Frontend API Client (src/services/api.ts)
 // ============================================================
-const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const BASE = typeof window !== "undefined"
+  ? (window as any).__NEXT_PUBLIC_API_URL__ || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+  : process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 class APIClient {
   private token: string | null = null;
