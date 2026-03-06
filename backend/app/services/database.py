@@ -11,7 +11,7 @@ DATABASE_URL = os.getenv(
     "postgresql+asyncpg://apex_user:apex_pass@localhost:5432/apex_trading"
 )
 
-engine = create_async_engine(DATABASE_URL, echo=False, pool_size=10, max_overflow=20)
+engine = create_async_engine(DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://").replace("postgres://", "postgresql+asyncpg://"), echo=False)
 AsyncSessionLocal = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 async def get_db():
