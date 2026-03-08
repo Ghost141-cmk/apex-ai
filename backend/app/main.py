@@ -21,6 +21,9 @@ market_service = MarketDataService()
 async def lifespan(app: FastAPI):
     # Startup
     logger.info("Starting APEX AI Trading Platform...")
+    from app.services.database import init_db
+    await init_db()
+    logger.info("Database tables created")
     asyncio.create_task(market_service.start_streaming(manager))
     yield
     # Shutdown
