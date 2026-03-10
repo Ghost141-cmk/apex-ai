@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import { api } from "@/services/api";
-import Dashboard from "@/components/Dashboard";
-import AuthScreen from "@/components/AuthScreen";
+import dynamic from "next/dynamic";
+const Dashboard = dynamic(() => import("@/components/Dashboard"), { ssr: false });
+const AuthScreen = dynamic(() => import("@/components/AuthScreen"), { ssr: false });
 
 export default function Home() {
   const [loggedIn, setLoggedIn] = useState(false);
