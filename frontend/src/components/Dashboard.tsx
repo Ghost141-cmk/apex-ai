@@ -8,10 +8,12 @@ import dynamic from "next/dynamic";
 const ProChart = dynamic(() => import("./ProChart"), { ssr: false });
 
 const SYMBOLS: Record<string, string[]> = {
-  forex:     ["EUR/USD", "GBP/USD", "USD/JPY", "AUD/USD"],
-  crypto:    ["BTC/USD", "ETH/USD", "SOL/USD", "BNB/USD"],
-  stocks:    ["AAPL", "TSLA", "NVDA", "MSFT"],
-  synthetic: ["Volatility 75", "Volatility 25", "Crash 500", "Boom 1000"],
+  forex:       ["EUR/USD", "GBP/USD", "USD/JPY", "AUD/USD", "GBP/JPY", "USD/CAD", "EUR/GBP", "NZD/USD", "USD/CHF", "EUR/JPY", "GBP/AUD", "USD/ZAR"],
+  crypto:      ["BTC/USD", "ETH/USD", "SOL/USD", "BNB/USD", "XRP/USD", "ADA/USD", "DOGE/USD", "AVAX/USD"],
+  commodities: ["XAU/USD", "XAG/USD", "WTI/USD", "BRENT/USD"],
+  indices:     ["US30", "NAS100", "SPX500", "UK100", "GER40"],
+  stocks:      ["AAPL", "TSLA", "NVDA", "MSFT", "AMZN", "GOOGL", "META", "NFLX"],
+  synthetic:   ["Volatility 75", "Volatility 25", "Crash 500", "Boom 1000", "Crash 1000", "Boom 500", "Step Index", "Range Break 100"],
 };
 
 const MODES = [
