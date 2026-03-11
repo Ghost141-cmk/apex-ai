@@ -12,7 +12,7 @@ const SYMBOLS: Record<string, string[]> = {
   crypto:      ["BTC/USD", "ETH/USD", "SOL/USD", "BNB/USD", "XRP/USD", "ADA/USD", "DOGE/USD", "AVAX/USD"],
   commodities: ["XAU/USD", "XAG/USD", "WTI/USD", "BRENT/USD"],
   indices:     ["US30", "NAS100", "SPX500", "UK100", "GER40"],
-  stocks:      ["AAPL", "TSLA", "NVDA", "MSFT", "AMZN", "GOOGL", "META", "NFLX"],
+  stocks:      ["AAPL", "TSLA", "NVDA", "MSFT"],
   synthetic:   ["Volatility 75", "Volatility 25", "Crash 500", "Boom 1000", "Crash 1000", "Boom 500", "Step Index", "Range Break 100"],
 };
 
