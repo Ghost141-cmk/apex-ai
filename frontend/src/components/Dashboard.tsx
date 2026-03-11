@@ -1,7 +1,6 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { api } from "@/services/api";
-import { useMarketWebSocket } from "@/hooks/useMarketWS";
 import dynamic from "next/dynamic";
 
 // Dynamically import chart (avoids SSR issues)
@@ -83,7 +82,25 @@ export default function Dashboard({ user, onLogout }: { user: any; onLogout: () 
     });
   }, [symbol]);
 
-  const { connected } = useMarketWebSocket(onTick, [symbol]);
+  const [connected, setConnected] = useState(false);
+  const wsRef = useRef<WebSocket|null>(null);
+  const retryRef = useRef<any>(null);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const wsUrl = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:8000";
+    const connect = () => {
+      try {
+        const ws = new WebSocket(`${wsUrl}/ws/market`);
+        wsRef.current = ws;
+        ws.onopen = () => { setConnected(true); ws.send(JSON.stringify({action:"subscribe",symbol})); };
+        ws.onmessage = (e) => { try { const d=JSON.parse(e.data); if(d.type==="tick") onTick(d); } catch{} };
+        ws.onclose = () => { setConnected(false); retryRef.current=setTimeout(connect,4000); };
+        ws.onerror = () => ws.close();
+      } catch { setConnected(false); }
+    };
+    connect();
+    return () => { clearTimeout(retryRef.current); wsRef.current?.close(); };
+  }, [symbol]);
 
   // Load initial data
   useEffect(() => {
