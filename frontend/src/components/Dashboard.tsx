@@ -60,6 +60,9 @@ export default function Dashboard({ user, onLogout }: { user: any; onLogout: () 
   const [walletTab,    setWalletTab]    = useState<"deposit"|"withdraw">("deposit");
   const [copySetup,    setCopySetup]    = useState<any>(null);
   const [acctBal,      setAcctBal]      = useState(10000);
+  const [connected,    setConnected]    = useState(false);
+  const wsRef    = useRef<WebSocket|null>(null);
+  const retryRef = useRef<any>(null);
 
   const notify = (msg: string, type: "success"|"error" = "success") => {
     setNotif({ msg, type });
@@ -81,10 +84,6 @@ export default function Dashboard({ user, onLogout }: { user: any; onLogout: () 
       return updated;
     });
   }, [symbol]);
-
-  const [connected, setConnected] = useState(false);
-  const wsRef = useRef<WebSocket|null>(null);
-  const retryRef = useRef<any>(null);
   useEffect(() => {
     if (typeof window === "undefined") return;
     const wsUrl = process.env.NEXT_PUBLIC_WS_URL || "ws://localhost:8000";
