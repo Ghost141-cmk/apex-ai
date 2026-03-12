@@ -256,7 +256,7 @@ select.inp{cursor:pointer}
 </div>
 
 <script>
-var API = API_URL;
+var API = 'https://apex-ai-production-f910.up.railway.app';
 const SYMBOLS = {
   forex:['EUR/USD','GBP/USD','USD/JPY','AUD/USD','GBP/JPY','USD/CAD','EUR/GBP','NZD/USD','USD/CHF','EUR/JPY','GBP/AUD','USD/ZAR'],
   crypto:['BTC/USD','ETH/USD','SOL/USD','BNB/USD','XRP/USD','ADA/USD','DOGE/USD','AVAX/USD'],
