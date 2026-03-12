@@ -279,7 +279,7 @@ let ws = null;
 let trades = [];
 
 // ── Auth ──────────────────────────────────────────────
-let authTab = 'login';
+var authTab = 'login';
 function switchTab(tab) {
   authTab = tab;
   document.getElementById('reg-name-wrap').style.display = tab==='register'?'block':'none';
