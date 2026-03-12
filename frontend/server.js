@@ -256,7 +256,7 @@ select.inp{cursor:pointer}
 </div>
 
 <script>
-const API = '${API_URL}';
+const API_INJECT = `${API_URL}`;
 const SYMBOLS = {
   forex:['EUR/USD','GBP/USD','USD/JPY','AUD/USD','GBP/JPY','USD/CAD','EUR/GBP','NZD/USD','USD/CHF','EUR/JPY','GBP/AUD','USD/ZAR'],
   crypto:['BTC/USD','ETH/USD','SOL/USD','BNB/USD','XRP/USD','ADA/USD','DOGE/USD','AVAX/USD'],
