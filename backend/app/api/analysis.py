@@ -1,3 +1,20 @@
+import numpy as np
+
+def convert_numpy(obj):
+    if isinstance(obj, dict):
+        return {k: convert_numpy(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy(i) for i in obj]
+    elif isinstance(obj, (np.bool_, np.bool8)):
+        return bool(obj)
+    elif isinstance(obj, (np.integer,)):
+        return int(obj)
+    elif isinstance(obj, (np.floating,)):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    return obj
+
 # ============================================================
 # AI ANALYSIS API
 # ============================================================
@@ -198,7 +215,7 @@ async def withdraw(
     )
     db.add(tx)
     await db.commit()
-    return result
+    return convert_numpy(result)
 
 @wallet_router.post("/airtel-webhook")
 async def airtel_webhook(
