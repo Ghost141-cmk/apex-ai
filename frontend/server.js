@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 8080;
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+var API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 app.get('*', (req, res) => {
   res.send(`<!DOCTYPE html>
@@ -256,7 +256,7 @@ select.inp{cursor:pointer}
 </div>
 
 <script>
-const API = API_URL;
+var API = API_URL;
 const SYMBOLS = {
   forex:['EUR/USD','GBP/USD','USD/JPY','AUD/USD','GBP/JPY','USD/CAD','EUR/GBP','NZD/USD','USD/CHF','EUR/JPY','GBP/AUD','USD/ZAR'],
   crypto:['BTC/USD','ETH/USD','SOL/USD','BNB/USD','XRP/USD','ADA/USD','DOGE/USD','AVAX/USD'],
